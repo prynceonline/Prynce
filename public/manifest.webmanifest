@@ -1,0 +1,18 @@
+{
+  "name": "ACTIVE — Prynce App Store",
+  "short_name": "ACTIVE",
+  "description": "Discover Prynce apps and free digital experiences.",
+  "start_url": "/Prynce/",
+  "scope": "/Prynce/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#24105d",
+  "icons": [
+    {
+      "src": "/Prynce/active-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
