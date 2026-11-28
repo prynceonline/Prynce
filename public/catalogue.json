@@ -24,8 +24,8 @@
       "name": "PRYNCE TV",
       "category": "Entertainment",
       "type": "Prynce app",
-      "status": "in_development",
-      "website": null,
+      "status": "website_available",
+      "website": "https://headless-bkznydlmefs-prynceonline-140c.wix-site-host.com/tv.html",
       "android_release": null,
       "devices": [
         "phone",
