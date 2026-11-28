@@ -45,9 +45,11 @@ create table if not exists public.active_app_releases (
   status text not null default 'pending'
     check (status in ('pending','published','rejected','withdrawn')),
   published_at timestamptz,
-  created_at timestamptz not null default now(),
-  unique (app_id, version, platform, coalesce(architecture, ''))
+  created_at timestamptz not null default now()
 );
+
+create unique index if not exists active_release_version_unique_idx
+  on public.active_app_releases (app_id, version, platform, (coalesce(architecture, '')));
 
 create table if not exists public.active_app_submissions (
   id uuid primary key default gen_random_uuid(),
