@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "store": "ACTIVE",
+  "publisher": "PRYNCE",
+  "access_policy": "Free browsing and free access to approved free releases",
+  "generated_at": "2026-11-28",
+  "entries": [
+    {
+      "id": "prynce-news-24",
+      "name": "PRYNCE NEWS 24",
+      "category": "News",
+      "type": "Prynce platform",
+      "status": "website_available",
+      "website": "https://headless-bkznydlmefs-prynceonline-140c.wix-site-host.com/",
+      "android_release": null,
+      "devices": [
+        "phone",
+        "tablet",
+        "android_tv"
+      ]
+    },
+    {
+      "id": "prynce-tv",
+      "name": "PRYNCE TV",
+      "category": "Entertainment",
+      "type": "Prynce app",
+      "status": "in_development",
+      "website": null,
+      "android_release": null,
+      "devices": [
+        "phone",
+        "tablet",
+        "android_tv"
+      ]
+    },
+    {
+      "id": "prynce-marketplace",
+      "name": "PRYNCE Marketplace",
+      "category": "Shopping",
+      "type": "Prynce app",
+      "status": "in_development",
+      "website": null,
+      "android_release": null,
+      "devices": [
+        "phone",
+        "tablet"
+      ]
+    },
+    {
+      "id": "step-in-jewelries",
+      "name": "STEP IN JEWELRIES",
+      "category": "Shopping",
+      "type": "Prynce project",
+      "status": "website_available",
+      "website": "https://prynceonline.wixsite.com/step-in-jewelries",
+      "android_release": null,
+      "devices": [
+        "phone",
+        "tablet"
+      ]
+    },
+    {
+      "id": "school-management",
+      "name": "School Management",
+      "category": "Education",
+      "type": "Prynce app",
+      "status": "in_development",
+      "website": null,
+      "android_release": null,
+      "devices": [
+        "phone",
+        "tablet"
+      ]
+    },
+    {
+      "id": "rider-connect",
+      "name": "Rider Connect",
+      "category": "Lifestyle",
+      "type": "Prynce app",
+      "status": "in_development",
+      "website": null,
+      "android_release": null,
+      "devices": [
+        "phone"
+      ]
+    },
+    {
+      "id": "prynce-online",
+      "name": "Prynce Online",
+      "category": "Productivity",
+      "type": "Prynce platform",
+      "status": "website_available",
+      "website": "https://headless-bkznydlmefs-prynceonline-140c.wix-site-host.com/",
+      "android_release": null,
+      "devices": [
+        "phone",
+        "tablet",
+        "android_tv"
+      ]
+    },
+    {
+      "id": "prynce-x",
+      "name": "PrynceX",
+      "category": "Shopping",
+      "type": "Prynce project",
+      "status": "in_development",
+      "website": null,
+      "android_release": null,
+      "devices": [
+        "phone",
+        "tablet"
+      ]
+    }
+  ]
+}
