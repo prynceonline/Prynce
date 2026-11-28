@@ -71,4 +71,10 @@ function AppStore(){
   {selected&&<div className="modal-backdrop" onClick={()=>setSelected(null)}><div className="app-modal" onClick={e=>e.stopPropagation()}><button className="modal-close" onClick={()=>setSelected(null)}><X/></button><div className="modal-head"><AppIcon app={selected} large/><div><h2>{selected.name}</h2><span>{selected.category} · {selected.kind}</span></div></div><p>{selected.summary}</p><div className="modal-meta"><span><ShieldCheck size={15}/> {selected.url?'Website available':'Release in development'}</span><span><Globe2 size={15}/> Free to access</span></div><div className="modal-description">ACTIVE listing status: <b>{selected.status}</b>. {selected.url?'You can open the current project website.':'The Android package is not yet published. A download button will appear after a verified release is available.'}</div><div className="modal-actions">{selected.url?<a className="install-button" href={selected.url} target="_blank" rel="noreferrer">Open project <ArrowUpRight size={16}/></a>:<button className="install-button disabled" disabled><Download size={16}/> Not downloadable yet</button>}<button className="save-button" onClick={()=>save(selected.id)}>{saved.includes(selected.id)?'Saved ✓':'Save app'}</button></div></div></div>}
  </div>;
 }
-createRoot(document.getElementById('root')).render(<AppStore/>);\n\nif ('serviceWorker' in navigator && import.meta.env.PROD) {\n  window.addEventListener('load', () => {\n    navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(() => {});\n  });\n}
+createRoot(document.getElementById('root')).render(<AppStore/>);
+
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(() => {});
+  });
+}
