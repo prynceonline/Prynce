@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Search, Menu, Smartphone, Tv, Tablet, ChevronDown, ChevronRight, Download, ShieldCheck, Home, Gamepad2, Grid3X3, UserRound, ArrowUpRight, X, Star, Globe2, CircleHelp } from 'lucide-react';
 import './styles.css';
@@ -13,7 +13,7 @@ const apps = [
  {id:'online',name:'Prynce Online',category:'Productivity',icon:'🌐',summary:'The central Prynce digital ecosystem and online services.',status:'Website available',kind:'Prynce platform',devices:['This device','Android TV','Tablet'],url:'https://headless-bkznydlmefs-prynceonline-140c.wix-site-host.com/',tone:'online'},
  {id:'prynce-x',name:'PrynceX',category:'Shopping',icon:'✦',summary:'Prynce sales and commerce platform concept.',status:'In development',kind:'Prynce project',devices:['This device','Tablet'],tone:'prynce'}
 ];
-const categories=['For you','Top charts','Categories','News','Entertainment','Shopping','Education'];
+const categories=['For you','All apps','Games','News','Entertainment','Shopping','Education'];
 const deviceOptions=[{label:'This device',icon:Smartphone},{label:'Android TV',icon:Tv},{label:'Tablet',icon:Tablet}];
 
 function AppIcon({app,large=false}) { return <span className={'app-icon '+app.tone+(large?' large':'')}>{app.icon}</span>; }
@@ -35,15 +35,17 @@ function AppStore(){
  const [selected,setSelected]=useState(null);
  const [menuOpen,setMenuOpen]=useState(false);
  const [activeNav,setActiveNav]=useState('Home');
- const [saved,setSaved]=useState([]);
- const filtered=useMemo(()=>apps.filter(a=>(category==='For you'||category==='Top charts'||category==='Categories'||a.category===category)&&(a.name+' '+a.category+' '+a.summary).toLowerCase().includes(query.toLowerCase())&&a.devices.includes(device)),[query,category,device]);
+ const [saved,setSaved]=useState(()=>{try{return JSON.parse(localStorage.getItem('active-saved-apps')||'[]')}catch{return []}});
+ useEffect(()=>{try{localStorage.setItem('active-saved-apps',JSON.stringify(saved))}catch{}},[saved]);
+ const filtered=useMemo(()=>apps.filter(a=>(category==='For you'||category==='All apps'||(category==='Games'?a.category==='Entertainment':a.category===category))&&(a.name+' '+a.category+' '+a.summary).toLowerCase().includes(query.toLowerCase())&&a.devices.includes(device)&& (activeNav!=='Saved'||saved.includes(a.id))),[query,category,device,activeNav,saved]);
  const save=(id)=>setSaved(s=>s.includes(id)?s.filter(x=>x!==id):[...s,id]);
  return <div className="store">
   <header className="topbar">
    <a className="brand" href="#"><span className="brand-logo">A<span>✦</span></span><span>ACTIVE<small>by PRYNCE</small></span></a>
    <div className="search-wrap"><Search size={19}/><input aria-label="Search apps" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search apps and games"/>{query&&<button onClick={()=>setQuery('')} aria-label="Clear search"><X size={17}/></button>}</div>
-   <button className="profile" aria-label="Account"><UserRound size={19}/></button>
-   <button className="mobile-menu" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Menu"><Menu/></button>
+   <a className="profile" href="#about" aria-label="About ACTIVE"><UserRound size={19}/></a>
+   <button className="mobile-menu" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Menu" aria-expanded={menuOpen}><Menu/></button>
+   {menuOpen&&<div className="device-menu main-menu"><button onClick={()=>{setActiveNav('Apps');setCategory('All apps');setMenuOpen(false)}}><Grid3X3 size={17}/> Browse all apps</button><button onClick={()=>{setActiveNav('Saved');setMenuOpen(false)}}><UserRound size={17}/> Saved apps</button><a href="#developer" onClick={()=>setMenuOpen(false)}>Developer information</a><a href="#about" onClick={()=>setMenuOpen(false)}>About ACTIVE</a></div>
   </header>
   <div className="device-row">
    <div className="device-picker-wrap"><button className="device-picker" onClick={()=>setDeviceOpen(!deviceOpen)}><span className="check">✓</span>{device}<ChevronDown size={16}/></button>
@@ -63,11 +65,11 @@ function AppStore(){
     <div className="app-grid">{filtered.map(a=><AppCard key={a.id} app={a} onOpen={setSelected}/>)}</div>
     {filtered.length===0&&<div className="empty"><Search/><b>No apps found for this device</b><span>Try another search or select a different device.</span></div>}
    </section>
-   <section className="developer-banner"><div className="dev-icon"><Grid3X3/></div><div><span className="eyebrow">ACTIVE DEVELOPER HUB</span><h2>Bring your app to ACTIVE</h2><p>App submissions will open after the secure upload, verification and review process is ready.</p></div><a href="mailto:apps@prynceonline.com?subject=ACTIVE%20developer%20enquiry">Developer enquiry <ArrowUpRight size={16}/></a></section>
+   <section className="developer-banner"><div className="dev-icon"><Grid3X3/></div><div><span className="eyebrow">ACTIVE DEVELOPER HUB</span><h2>Bring your app to ACTIVE</h2><p>App submissions will open after the secure upload, verification and review process is ready.</p></div><a href="https://github.com/prynceonline/Prynce/issues/new?title=ACTIVE%20developer%20enquiry" target="_blank">Developer enquiry <ArrowUpRight size={16}/></a></section>
    <section className="safety"><ShieldCheck/><span><b>Free access. Carefully reviewed releases.</b><small>Only verified app files will receive a download button. Upcoming projects are clearly marked.</small></span><a href="https://f-droid.org/en/docs/Setup_an_F-Droid_App_Repo/" target="_blank" rel="noreferrer">How app releases work</a></section>
   </main>
   <footer><a className="brand" href="#"><span className="brand-logo">A<span>✦</span></span><span>ACTIVE<small>by PRYNCE</small></span></a><span>Discover more. Do more.</span><small>© {new Date().getFullYear()} Prynce · Independent app discovery platform</small></footer>
-  <nav className="bottom-nav"><button className={activeNav==='Home'?'on':''} onClick={()=>{setActiveNav('Home');setCategory('For you')}}><Home/><span>Home</span></button><button className={activeNav==='Games'?'on':''} onClick={()=>{setActiveNav('Games');setCategory('Entertainment')}}><Gamepad2/><span>Games</span></button><button className={activeNav==='Apps'?'on':''} onClick={()=>{setActiveNav('Apps');setCategory('Categories')}}><Grid3X3/><span>Apps</span></button><button className={activeNav==='Saved'?'on':''} onClick={()=>{setActiveNav('Saved');setQuery('')}}><UserRound/><span>Saved</span></button></nav>
+  <nav className="bottom-nav"><button className={activeNav==='Home'?'on':''} onClick={()=>{setActiveNav('Home');setCategory('For you')}}><Home/><span>Home</span></button><button className={activeNav==='Games'?'on':''} onClick={()=>{setActiveNav('Games');setCategory('Entertainment')}}><Gamepad2/><span>Games</span></button><button className={activeNav==='Apps'?'on':''} onClick={()=>{setActiveNav('Apps');setCategory('All apps')}}><Grid3X3/><span>Apps</span></button><button className={activeNav==='Saved'?'on':''} onClick={()=>{setActiveNav('Saved');setQuery('')}}><UserRound/><span>Saved</span></button></nav>
   {selected&&<div className="modal-backdrop" onClick={()=>setSelected(null)}><div className="app-modal" onClick={e=>e.stopPropagation()}><button className="modal-close" onClick={()=>setSelected(null)}><X/></button><div className="modal-head"><AppIcon app={selected} large/><div><h2>{selected.name}</h2><span>{selected.category} · {selected.kind}</span></div></div><p>{selected.summary}</p><div className="modal-meta"><span><ShieldCheck size={15}/> {selected.url?'Website available':'Release in development'}</span><span><Globe2 size={15}/> Free to access</span></div><div className="modal-description">ACTIVE listing status: <b>{selected.status}</b>. {selected.url?'You can open the current project website.':'The Android package is not yet published. A download button will appear after a verified release is available.'}</div><div className="modal-actions">{selected.url?<a className="install-button" href={selected.url} target="_blank" rel="noreferrer">Open project <ArrowUpRight size={16}/></a>:<button className="install-button disabled" disabled><Download size={16}/> Not downloadable yet</button>}<button className="save-button" onClick={()=>save(selected.id)}>{saved.includes(selected.id)?'Saved ✓':'Save app'}</button></div></div></div>}
  </div>;
 }
