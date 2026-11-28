@@ -30,7 +30,7 @@ Apply the SQL migration using the Supabase CLI after selecting the intended Supa
 
 ```bash
 supabase link --project-ref YOUR_PROJECT_REF
-supabase db push
+supabase db push --remote --yes
 ```
 
 The migration creates developer profiles, app records, release metadata and submission records. Row Level Security limits public reads to approved catalogue entries and published releases. Client users cannot publish apps or releases; a trusted review workflow must do that.
