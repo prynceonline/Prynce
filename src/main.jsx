@@ -5,7 +5,7 @@ import './styles.css';
 
 const apps = [
  {id:'news',name:'PRYNCE NEWS 24',category:'News',icon:'📰',summary:'News, opportunities and updates from Ghana and around the world.',status:'Website available',kind:'Prynce app',devices:['This device','Android TV','Tablet'],url:'https://headless-bkznydlmefs-prynceonline-140c.wix-site-host.com/',tone:'news'},
- {id:'tv',name:'PRYNCE TV',category:'Entertainment',icon:'📺',summary:'A home for Ghanaian television, sports and entertainment.',status:'In development',kind:'Prynce app',devices:['This device','Android TV','Tablet'],tone:'tv'},
+ {id:'tv',name:'PRYNCE TV',category:'Entertainment',icon:'📺',summary:'Open the Prynce TV web experience for Ghanaian television, sports and entertainment.',status:'TV website available',kind:'Prynce app',devices:['This device','Android TV','Tablet'],url:'https://headless-bkznydlmefs-prynceonline-140c.wix-site-host.com/tv.html',tone:'tv'},
  {id:'market',name:'PRYNCE Marketplace',category:'Shopping',icon:'🛍️',summary:'Discover products, sellers and services in one marketplace.',status:'In development',kind:'Prynce app',devices:['This device','Tablet'],tone:'market'},
  {id:'jewelry',name:'STEP IN JEWELRIES',category:'Shopping',icon:'💎',summary:'Explore a premium jewellery shopping experience.',status:'Website available',kind:'Prynce project',devices:['This device','Tablet'],url:'https://prynceonline.wixsite.com/step-in-jewelries',tone:'jewel'},
  {id:'school',name:'School Management',category:'Education',icon:'🎓',summary:'A digital school experience for students, parents and teachers.',status:'In development',kind:'Prynce app',devices:['This device','Tablet'],tone:'school'},
