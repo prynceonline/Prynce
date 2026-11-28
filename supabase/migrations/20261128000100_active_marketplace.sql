@@ -126,3 +126,11 @@ create policy "Developers read own submissions"
 -- No client-side insert/update policy exists for apps or releases.
 -- Publication and release approval must be performed by a trusted server/admin workflow.
 -- Never expose the Supabase service-role key in browser code.
+
+
+-- Explicit Data API privileges. RLS remains the row-level security boundary.
+grant select on public.active_apps, public.active_app_releases to anon, authenticated;
+grant select, insert, update on public.active_developer_profiles to authenticated;
+grant select, insert on public.active_app_submissions to authenticated;
+grant all on public.active_apps, public.active_app_releases,
+  public.active_developer_profiles, public.active_app_submissions to service_role;
