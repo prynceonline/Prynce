@@ -45,7 +45,7 @@ function AppStore(){
    <div className="search-wrap"><Search size={19}/><input aria-label="Search apps" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search apps and games"/>{query&&<button onClick={()=>setQuery('')} aria-label="Clear search"><X size={17}/></button>}</div>
    <a className="profile" href="#about" aria-label="About ACTIVE"><UserRound size={19}/></a>
    <button className="mobile-menu" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Menu" aria-expanded={menuOpen}><Menu/></button>
-   {menuOpen&&<div className="device-menu main-menu"><button onClick={()=>{setActiveNav('Apps');setCategory('All apps');setMenuOpen(false)}}><Grid3X3 size={17}/> Browse all apps</button><button onClick={()=>{setActiveNav('Saved');setMenuOpen(false)}}><UserRound size={17}/> Saved apps</button><a href="#developer" onClick={()=>setMenuOpen(false)}>Developer information</a><a href="#about" onClick={()=>setMenuOpen(false)}>About ACTIVE</a></div>
+   {menuOpen&&<div className="device-menu main-menu"><button onClick={()=>{setActiveNav('Apps');setCategory('All apps');setMenuOpen(false)}}><Grid3X3 size={17}/> Browse all apps</button><button onClick={()=>{setActiveNav('Saved');setMenuOpen(false)}}><UserRound size={17}/> Saved apps</button><a href="#developer" onClick={()=>setMenuOpen(false)}>Developer information</a><a href="#about" onClick={()=>setMenuOpen(false)}>About ACTIVE</a></div>}
   </header>
   <div className="device-row">
    <div className="device-picker-wrap"><button className="device-picker" onClick={()=>setDeviceOpen(!deviceOpen)}><span className="check">✓</span>{device}<ChevronDown size={16}/></button>
